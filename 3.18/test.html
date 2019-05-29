@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			var xmlhttp;
+			
+			if (window.XMLHttpRequest) {//主流
+				xmlhttp=new XMLHttpRequest();
+			}else{
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.open('GET','路径',true);
+			
+			你设定的那个值,open提交也可以写其他提交(get指提交方式,路径一般是提交到php,true是异步提交false是同步提交);
+			
+			xmlhttp.setRequestHeader("content-type","application/x-www-form-rlencoded");
+			
+			xmlhttp.send();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+
+<xml>
+	<user>
+		<name>大龙</name>
+		<age>20</age>
+	</user>
+	<user>
+		<name>小龙</name>
+		<age>18</age>
+	</user>
+	<user>
+		<name>飞龙</name>
+		<age>25</age>
+	</user>
+	<user>
+		<name>千年龙</name>
+		<age>120</age>
+	</user>
+</xml>

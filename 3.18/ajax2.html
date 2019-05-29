@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			function ajaxload(){	
+			var uname=document.getElementById('uname').value;
+			var xmlhttp;
+			if(window.XMLHttpRequest){  //主流
+				xmlhttp=new XMLHttpRequest();
+			}
+			else{
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			//alert(xmlhttp);2`                    
+			xmlhttp.open('GET','./ajax2.php?uname='+uname,true);  //第一个参数是提交方式,第二个参数是提交路径,第三个是提交的模式(异步true  同步false 不给默认true)
+			xmlhttp.send();
+			xmlhttp.onreadystatechange=function(){
+//				alert(xmlhttp.readyState);
+//			    alert(xmlhttp.status)
+				if(xmlhttp.readyState==4  &&  xmlhttp.status==200){				
+//					alert(xmlhttp.responseText);
+					if(xmlhttp.responseText=='ok'){
+						document.getElementById('showmsg').innerHTML='此用户名已被使用';
+					}
+				}
+			}
+		}
+		</script>
+	</head>
+	<input type="text" id="uname" name="uname" onblur="ajaxload()"/><span id="showmsg" style="color: red;"></span>
+	<body>
+	</body>
+</html>

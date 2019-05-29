@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			function ajaxload(){
+				var xmlhttp;
+				if(window.XMLHttpRequest){
+					xmlhttp=new XMLHttpRequest();
+				}else{
+					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.open('GET','./xml.xml');
+				xmlhttp.send();
+				xmlhttp.onreadystatechange=function(){
+					if(xmlhttp.readyState==4 && xmlhttp.status==200){
+						var axml=xmlhttp.responseXML;
+						var userxml=axml.getElementsByTagName('user');
+						var strtable="<table>";
+						for (var i=0;i<userxml.length;i++) {
+//							alert(userxml[i].getElementsByTagName('name')[0].firstChild.nodeValue);
+//							alert(userxml[i].getElementsByTagName('age')[0].firstChild.nodeValue);
+							strtable+="<tr><td>"+userxml[i].getElementsByTagName('name')[0].firstChild.nodeValue+"</td>";
+							strtable+="<td>"+userxml[i].getElementsByTagName('age')[0].firstChild.nodeValue+"</td></tr>";
+						}
+						strtable+="</table>";
+						document.getElementById('div').innerHTML=strtable;
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button onclick="ajaxload()">提交</button>
+		<div id="div"></div>
+	</body>
+</html>

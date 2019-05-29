@@ -1,0 +1,101 @@
+asynchronous   异步的
+JavaScript
+and
+xml
+
+优点:
+页面无刷新
+节省资源
+
+缺点:
+不同浏览器对xmlhttprequest 对象支持不足
+缺乏调试工具
+
+同步:只能一个程序执行完后才能执行下一个
+异步:能同时执行
+
+浏览器    <--->  internet     <--->服务器    <---interent
+
+
+
+
+Xmlhttprequest  它是ajax对象
+
+
+    1.Ajax提交,提交无参数
+function ajaxload(){	
+			var uname=document.getElementById('uname').value;
+			var xmlhttp;
+			if(window.XMLHttpRequest){  //主流
+				xmlhttp=new XMLHttpRequest();
+			}
+			else{
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			//alert(xmlhttp);
+			xmlhttp.open('GET','./ajax1.php',true);  //第一个参数是提交方式,第二个参数是提交路径,第三个是提交的模式(异步true  同步false   不给默认true)
+			xmlhttp.send();
+			//onreadystatechange它是一个事件
+			//readystate  =0请求初始化   1:服务器连接已建立   2:请求已接收   3:请求处理中  4:请求已完成
+			//status  200:成功     202:请求被接收,但未成功    400:错误的请求     404:未找到页面   500:内部服务器错误
+			xmlhttp.onreadystatechange=function(){
+    			alert(xmlhttp.readyState);
+    			alert(xmlhttp.status)
+			}
+		}
+<?php
+	$fp=fopen('./02.txt','a'); //有此文件就直接打开,否则创建
+	fwrite($fp,'李金涛');
+	fclose($fp);
+?>
+
+
+    2.get提交带参数,有返回数据
+function ajaxload(){	
+			var uname=document.getElementById('uname').value;
+			var xmlhttp;
+			if(window.XMLHttpRequest){  //主流
+				xmlhttp=new XMLHttpRequest();
+			}
+			else{
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			//alert(xmlhttp);
+			xmlhttp.open('GET','./ajax1.php?uname='+uname,true);  //第一个参数是提交方式,第二个参数是提交路径,第三个是提交的模式(异步true  同步false 不给默认true)
+			xmlhttp.send();
+			xmlhttp.onreadystatechange=function(){
+				alert(xmlhttp.readyState);
+			    alert(xmlhttp.status)
+				if(xmlhttp.readyState==4  &&  xmlhttp.status==200){					alert(xmlhttp.responseText);
+					if(xmlhttp.responseText=='ok'){
+						document.getElementById('showmsg').innerHTML='此用户名已被使用';
+					}
+				}
+			}
+		}
+<?php
+	if(isset($_GET['uname'])){
+		echo "ok";    //此用户名可以用
+	}	
+	else{
+		echo "no";    //此用户名已占用
+	}
+?>
+
+
+Get与post传参的区别
+get:不是很安全,参数大小有限
+post:安全性较高,参数数据可以大量
+
+Ajax返回数据格式
+1.文本格式
+2.xml格式 <xml><user>test1</user><age>18></age></xml>
+3.json格式 [{name:20,age:15},{name:test2,age:10}]
+4.jsonp 跨域访问
+
+get提交一般不需要设置表头 (url会自动解析)
+post 提交需要设置提交格式(设置表头)
+xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+xmlhttp.open('GET','路径',true)
+	你设定的那个值,open提交也可以写其他提交(get指提交方式,路径一般是提交到php,true是异步提交false是同步提交);

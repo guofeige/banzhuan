@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/jquery-1.9.0.min.js" ></script>
+		<script>
+			$(document).ready(function(){
+				
+				$("button").click(function(){
+//					document.write($("form").serializeArray());//序列化数组
+					$.ajax({
+						type:"post",
+						url:"ajaxform.php",
+						async:true,
+						
+						data:$("form").serialize(),
+						datatype:"text",
+						success:function(data,status,xmlhttp){
+							alert(data);
+						},
+						error:function(xmlhttp){
+							alert(xmlhttp.statusText);
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<form>
+			<ul>
+				<li>用户名:<input type="text" name="uname" class="required" minlength="3" value="test"/></li>
+				<li>密码:<input type="password" name="pwd" value="123"/></li>
+				<li>年龄:<input type="number" min="1" max="120" name="age" value="2"/></li>
+				<li>邮箱:<input type="email" name="email" value="www@qq.com"/></li>
+				<li>性别:<input type="radio" name="sex" value="1" checked="checked" />男<input type="radio" name="sex" value="0" />女</li>
+				<li>爱好:<input type="checkbox" value="1" name="like" />打游戏<input type="checkbox" value="2" name="like" />打游戏</li>
+				<li>图片:<input type="image" name="file" /></li>
+				<li>说明:<textarea name="txt"></textarea></li>
+				<li>班级:<select>
+					<option value="1">九班</option>
+				</select></li>
+				<li></li>
+			</ul>
+		</form>
+		<button>提交</button>
+	</body>
+</html>

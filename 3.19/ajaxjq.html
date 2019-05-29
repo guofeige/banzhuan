@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/jquery-1.9.0.min.js" ></script>
+		<script>
+			$(document).ready(function(){
+				$("button").click(function(){
+					$.ajax({
+//						type:"post",
+//						url:"ajaxjq.php",
+//						data:{
+//							'name':'test',
+//							'age':20,
+//							'tel':1234
+//						},//在post提交的情况下用
+						type:"GET",
+						url:"ajaxjq.php?name=nn",//get提交方式
+						date:"",
+						dataType:'text',//你想要的数据返回的是什么类型text html xml json
+//						dataType:'html',
+//						dataType:'xml',
+//						dataType:'json',
+						
+						success:function(data){//if(xmlhttp.readyState==4 && xmlhttp.status==200)
+							alert(data);
+						},
+						error:function(xhr){
+							alert(xhr.status);
+							alert(xhr.statusText);
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<button>jq ajax</button>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			function checkajax(val){
+				var xmlhttp;
+				if(window.XMLHttpRequest){
+					xmlhttp=new XMLHttpRequest;
+				}else{
+					xmlhttp=new ActiveXObject("Microsoft.XMLHTtP");
+				}
+//				xmlhttp.open('GET','./ajaxinput.php?name='+val);
+//				xmlhttp.send();
+
+
+				var info="name="+encodeURIComponent(val);
+				alert(info);
+				xmlhttp.open('POST','./ajaxinput.php');
+				xmlhttp.setRequestHeader("content-type","application/x-www-form-rlencoded");
+				xmlhttp.send(info);
+				xmlhttp.onreadystatechange=function(){
+					if(xmlhttp.readyState==4 && xmlhttp.status==200){
+						alert(xmlhttp.responseText);
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" onblur="checkajax(this.value)" />
+	</body>
+</html>

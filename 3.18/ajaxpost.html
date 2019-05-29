@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>post提交</title>
+		<script>
+			function ajaxload(){
+				var xmlhttp;
+				if(window.XMLHttpRequest){//判断是否为主流
+					xmlhttp=new XMLHttpRequest();
+				}else{
+					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.open('POST','./ajaxpost.php');//true异步		false同步
+				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				xmlhttp.send("a=test&age=20&sex=2");//如果是get提交方式，send()可不给参数，也可以给null，一般是post提交才会给参数
+				xmlhttp.onreadystatechange=function(){
+//					alert(xmlhttp.readyState);
+//					alert(xmlhttp.status);
+					if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+						alert(xmlhttp.responseText);
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button onclick="ajaxload()">提交</button>
+	</body>
+</html>

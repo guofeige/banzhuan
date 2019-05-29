@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<script>
+//		//IE浏览器 
+//		var xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");//最原始
+//		var xmlhttp=new ActiveXObject("Msxml2.XMZHYTP");//升级
+//		var xmlhttp=new ActiveXObject("Msxml2.XMLHTTP.3.0");
+//		var xmlhttp=new ActiveXObject("Msxml2.XMLHTTP.5.0");
+//		var xmlhttp=new ActiveXObject("Msxml2.XMLHTTP.6.0");
+//			
+//		//主流浏览器
+//		var xmlhttp=new XMLHttpRequest();
+		function ajaxload(){
+			var xmlhttp;
+			if (window.XMLHttpRequest) {//主流
+				xmlhttp=new XMLHttpRequest();
+			}else{
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");	
+			}
+//			alert(xmlhttp);
+			xmlhttp.open('GET','ajax1.html',true);//第一个参数是提交方式,第二个参数是提交路径,第三个提交模式（异步true 同步false）
+			xmlhttp.send();	
+//			alert();
+//			onreadystatechange它是一个事件
+//			readystate 	 =0请求未初始化	1:服务器连接已建立	2:请求已接收	3:请求处理中		4:请求已完成
+//			status	200:成功		202:请求被接收,但未成功		400:错误的请求	404未找到页面		500:内部服务器错误
+			xmlhttp.onreadystatechange=function(){
+				alert(xmlhttp.readyState);
+				alert(xmlhttp.status);
+			}
+		}
+	</script>
+	<body>
+		<button onclick="ajaxload()">ajax</button>
+	</body>
+</html>

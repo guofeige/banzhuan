@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>json字符串</title>
+		<script>
+			function load(){
+				var xmlhttp;
+				if (window.XMLHttpRequest) {
+					xmlhttp=new XMLHttpRequest();
+				}else{
+					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.open('GET','./ajaxjson.php');//"./"代表当前目录
+				xmlhttp.send();
+				
+				xmlhttp.onreadystatechange=function(){
+					if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+//						alert(xmlhttp.responseText);
+						var result=xmlhttp.responseText;
+						result=eval("("+result+")");
+//						alert(result);
+						var tr="";
+//						for (var i=0;i<result.length;i++) {
+////							alert(result[i],name);
+//							tr+="<tr><td>"+result[i].name+"</td>";
+//							tr+="<td>"+result[i].age+"</td></tr>";
+//						}
+
+
+						for () {
+							
+						}
+						document.getElementById('tab').innerHTML=tr;
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<button onclick="load()">json字符串</button>
+		<table id="tab"></table>
+	</body>
+</html>

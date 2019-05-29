@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/jquery-1.9.0.min.js" ></script>
+		<script>
+			$(document).ready(function(){
+				$("button").click(function(){
+					$.ajax({
+						type:"post",
+						url:"ajaxfrom.php",
+						async:true,
+						
+						data:$("form").serialize(),
+						datatype:"text",
+						success:function(data,status,xmlhttp){
+							alert(data);
+						},
+						error:function(xmlhttp){
+							alert(xmlhttp.statusText);
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
